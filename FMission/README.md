@@ -1,6 +1,6 @@
 FoamysWorld Epoch Scripts
 ==========
-FMission 1.0 is the current script set under development. 
+FMission is the current script set under development. 
 
 (NOTE: All scripts tested and scripted for 1.0.3.1 and No, I will not be upgrading to the latest Epoch Version)
 
