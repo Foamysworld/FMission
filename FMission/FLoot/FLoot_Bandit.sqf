@@ -7,7 +7,7 @@
 	File Description: FLoot Bandit Loadout Array Script
 
 Parameters: [unitname]
-_null = [unitname] execVM "\z\addons\dayz_server\addons\FMission\FLoot\FLoot_Bandit.sqf";
+[unitname] execVM "\z\addons\dayz_server\addons\FMission\FLoot\FLoot_Bandit.sqf";
 */
 
 private ["_unitname","_lootChance","_diceRoll","_weaponrnd","_weapon","_magazine","_weaponslist","_magazinelist","_itemFood","_itemDrink","_itemMeds","_itemMisc","_itemslistFood","_itemslistDrink","_itemslistMeds","_itemslistMisc","_i"];
