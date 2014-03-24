@@ -29,6 +29,8 @@ _mission_type = _this select 3;
 	_aiHeli = [_aispawnpos, 180, "UH1H_DZ", _aigroup] call BIS_fnc_spawnVehicle;
 	[_aigroup, _patrol_pos, _patrol_radius] execVM "\z\addons\dayz_server\addons\FMission\FAI\FAI_fn_heliPatrol.sqf";
 	_helitype = "UH1H_DZ";
+	_aiHeliDObj = _aiHeli select 0;
+	_aiHeliDObj setVehicleLock "LOCKED";
 	
 // Report results to RPT File
 diag_log format ["FAI Heli 1.0: -=%1=- Spawned @ Location: %2 | Patrol Radius: %3m",_helitype,_aispawnpos,_patrol_radius];

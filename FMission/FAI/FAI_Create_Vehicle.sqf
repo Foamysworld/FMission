@@ -17,9 +17,9 @@
 	
 */
 
-private ["_aispawnpos","_aigroup","_patrol_pos","_patrol_radius","_vehicletype","_aiVehicle","_aiVehicleObj","_aiVehicleCrew","_aiVehicleGroup","_mission_type"];
+private ["_aispawnpos","_aigroup","_patrol_pos","_patrol_radius","_vehicletype","_aiVehicle","_aiVehicleObj","_aiVehicleDObj","_aiVehicleCrew","_aiVehicleGroup","_mission_type"];
 
-_aiVehicle = objNull;
+//_aiVehicle = objNull;
 _aigroup = createGroup EAST;
 _aispawnpos = _this select 0;
 _patrol_pos = _this select 1;
@@ -31,23 +31,26 @@ _vehicletype = ["ArmoredSUV_PMC_DZ","GAZ_Vodnik_DZ","HMMWV_M1151_M2_CZ_DES_EP1_D
 
 if (_vehicletype == "ArmoredSUV_PMC_DZ") then
 	{
-	_aiVehicle = [_aispawnpos, 180, _vehicletype, _aigroup] call BIS_fnc_spawnVehicle;
+	_aiVehicle = [_aispawnpos, 180, "ArmoredSUV_PMC_DZ", _aigroup] call BIS_fnc_spawnVehicle;
 	[_aigroup, _aispawnpos, _patrol_radius] execVM "\z\addons\dayz_server\addons\FMission\FAI\FAI_fn_vehiclePatrol.sqf";
-	//[_aigroup, _aispawnpos, _patrol_radius] call BIS_fnc_taskPatrol;
+	_aiVehicleDObj = _aiVehicle select 0;
+	_aiVehicleDObj setVehicleLock "LOCKED";
 	};
 	
 if (_vehicletype == "GAZ_Vodnik_DZ") then
 	{
-	_aiVehicle = [_aispawnpos, 180, _vehicletype, _aigroup] call BIS_fnc_spawnVehicle;
+	_aiVehicle = [_aispawnpos, 180, "GAZ_Vodnik_DZ", _aigroup] call BIS_fnc_spawnVehicle;
 	[_aigroup, _aispawnpos, _patrol_radius] execVM "\z\addons\dayz_server\addons\FMission\FAI\FAI_fn_vehiclePatrol.sqf";
-	//[_aigroup, _aispawnpos, _patrol_radius] call BIS_fnc_taskPatrol;
+	_aiVehicleDObj = _aiVehicle select 0;
+	_aiVehicleDObj setVehicleLock "LOCKED";
 	};
 
 if (_vehicletype == "HMMWV_M1151_M2_CZ_DES_EP1_DZ") then
 	{
-	_aiVehicle = [_aispawnpos, 180, _vehicletype, _aigroup] call BIS_fnc_spawnVehicle;
+	_aiVehicle = [_aispawnpos, 180, "HMMWV_M1151_M2_CZ_DES_EP1_DZ", _aigroup] call BIS_fnc_spawnVehicle;
 	[_aigroup, _aispawnpos, _patrol_radius] execVM "\z\addons\dayz_server\addons\FMission\FAI\FAI_fn_vehiclePatrol.sqf";
-	//[_aigroup, _aispawnpos, _patrol_radius] call BIS_fnc_taskPatrol;
+	_aiVehicleDObj = _aiVehicle select 0;
+	_aiVehicleDObj setVehicleLock "LOCKED";
 	};	
 
 // Report results to RPT File
@@ -63,7 +66,8 @@ if (_mission_type == "M1") then
 	_aiVehicleCrew = _aiVehicle select 1;
 	_aiVehicleGroup = _aiVehicle select 2;
 
-	{ deleteVehicle _x } forEach (crew _aiVehicleObj); deleteVehicle _aiVehicleObj;
+	{ deleteVehicle _x } forEach (crew _aiVehicleObj); 
+	deleteVehicle _aiVehicleObj;
 
 	diag_log("FAI Vehicle 1.0: AI Vehicle Deleted");
 };
@@ -78,7 +82,8 @@ if (_mission_type == "M2") then
 	_aiVehicleCrew = _aiVehicle select 1;
 	_aiVehicleGroup = _aiVehicle select 2;
 
-	{ deleteVehicle _x } forEach (crew _aiVehicleObj); deleteVehicle _aiVehicleObj;
+	{ deleteVehicle _x } forEach (crew _aiVehicleObj);
+	deleteVehicle _aiVehicleObj;
 
 	diag_log("FAI Vehicle 1.0: AI Vehicle Deleted");
 };
@@ -93,7 +98,8 @@ if (_mission_type == "M3") then
 	_aiVehicleCrew = _aiVehicle select 1;
 	_aiVehicleGroup = _aiVehicle select 2;
 
-	{ deleteVehicle _x } forEach (crew _aiVehicleObj); deleteVehicle _aiVehicleObj;
+	{ deleteVehicle _x } forEach (crew _aiVehicleObj);
+	deleteVehicle _aiVehicleObj;
 
 	diag_log("FAI Vehicle 1.0: AI Vehicle Deleted");
 };
