@@ -3,7 +3,7 @@
 NOTE: These instructions are for INDIVIDUAL usage of the scripts ONLY. The path in the examples does NOT reflect 
 the correct path for usage in FMission. See "FMission Instructions.txt" for FMission usage.
 
-Last Updated: 3/23/2014
+Last Updated: 3/26/2014
 
 Section A: FMarkerX.sqf
 Section B: FMission_LauncherX.sqf
@@ -37,17 +37,26 @@ The call is expecting 5 parameters (position,loot position,marker radius, marker
 3) marker radius - how big the marker is
 4) marker color - what color the marker will be
 5) true or false - for debug true false (puts the dot where the loot position is for debug purposes)
+6) Text Icon Type "Icon Type for Text Marker" https://community.bistudio.com/wiki/cfgMarkers
+7) Marker Text "Text to display on Marker"
+8) Marker Brush ("SOLID","HORIZONTAL","VERTICAL","GRID","FDIAGONAL","BDIAGONAL","DIAGRID","CROSS","BORDER","SOLIDBORDER" 
 
 define the variables in your script before the marker call like this:
 
-_spawnRadius = 5000;
-_spawnMarker = 'center';
-_markerRadius = 350; // Radius the loot can spawn and used for the marker
-_markercolor = "ColorGreen";
+mission_despawn_timer = 1200; // This sets the Timeout if a timer is used.
+_wait_time = 900; // This is how long the loot box will stay once it spawns.
+_spawnRadius = 5000; // This is the distance from Center - Used to determine the radius in which missions will spawn
+_spawnMarker = 'center'; // DO NOT Change this, UNLESS you need a hard coded center loc for custom purposes
+_markerRadius = 350; // This sets marker radius and the area the loot can spawn in
+_markerColor = "ColorBlue"; // This sets the Marker Color
+_textMarker_IconType = "mil_objective"; // This sets the "Icon Type" (https://community.bistudio.com/wiki/cfgMarkers)
+_markerText = "Mission: Blah Blah"; // Text to display at Marker (Leave "" blank if you dont want a message)
+_markerBrush = "SOLID"; // Marker Brush - How the marker is filled in
+
 _position = [getMarkerPos _spawnMarker,0,_spawnRadius,10,0,2000,0] call BIS_fnc_findSafePos;
 _loot_pos = [_position,0,(_markerRadius - 100),10,0,2000,0] call BIS_fnc_findSafePos;
 
-[_position,_loot_pos,_markerRadius,_markercolor,false] execVM "\z\addons\dayz_server\addons\FMarker\FMarker.sqf";
+[_position,_loot_pos,_markerRadius,_markerColor,false,_textMarker_IconType,_markerText,_markerBrush] execVM "\z\addons\dayz_server\addons\FMission\FMarker\FMarkerX.sqf";
 
 -----------------------------------------------------------------------------------------------------------
 
