@@ -1,9 +1,9 @@
 /*
 	File Name: FMarker2.sqf
 	File Created: 12/29/2013
-	File Version: 1.2
+	File Version: 1.3
 	File Author: Foamy 
-	File Last Edit Date: 3/26/2014
+	File Last Edit Date: 3/27/2014
 	File Description: Foamy's Marker System for M2 Missions
 
 	Variables:
@@ -46,7 +46,7 @@ while{EPOCH_MISSION2_RUNNING} do
 	_event_marker2 setMarkerSize [(_radius + 50), (_radius + 50)];
 	_event_marker2 setMarkerBrush _brush;
 	
-	_text_marker2 = createMarker [ format ["loot_event_debug_marker_%1", _start_time], _lootcoords];
+	_text_marker2 = createMarker [ format ["loot_event_debug_marker_%1", _start_time], _coords];
 	_text_marker2 setMarkerShape "ICON";
 	_text_marker2 setMarkerType _text_icon_type;
 	_text_marker2 setMarkerColor "ColorBlack";
@@ -76,7 +76,7 @@ while{EPOCH_MISSION2_RUNNING} do
 	_event_marker2 setMarkerSize [(_radius + 50), (_radius + 50)];
 	_event_marker2 setMarkerBrush _brush;
 	
-	_text_marker2 = createMarker [ format ["loot_event_debug_marker_%1", _start_time], _lootcoords];
+	_text_marker2 = createMarker [ format ["loot_event_debug_marker_%1", _start_time], _coords];
 	_text_marker2 setMarkerShape "ICON";
 	_text_marker2 setMarkerType _text_icon_type;
 	_text_marker2 setMarkerColor "ColorBlack";
