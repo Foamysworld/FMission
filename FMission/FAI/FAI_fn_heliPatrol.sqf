@@ -22,9 +22,9 @@
 //Validate parameter count
 if ((count _this) < 3) exitWith {diag_log "Log: [taskPatrol] Function requires at least 3 parameters!"; false};
 
-private ["_grp", "_pos", "_maxDist", "_blacklist"];
+private ["_grp", "_patrolpos", "_maxDist", "_blacklist"];
 _grp = _this select 0;
-_pos = _this select 1;
+_patrolpos = _this select 1;
 _maxDist = _this select 2;
 
 _blacklist = [];
@@ -32,7 +32,7 @@ if ((count _this) > 3) then {_blacklist = _this select 3};
 
 //Validate parameters
 if ((typeName _grp) != (typeName grpNull)) exitWith {diag_log "Log: [taskPatrol] Group (0) must be a Group!"; false};
-if ((typeName _pos) != (typeName [])) exitWith {diag_log "Log: [taskPatrol] Position (1) must be an Array!"; false};
+if ((typeName _patrolpos) != (typeName [])) exitWith {diag_log "Log: [taskPatrol] Position (1) must be an Array!"; false};
 if ((typeName _maxDist) != (typeName 0)) exitWith {diag_log "Log: [taskPatrol] Maximum distance (2) must be a Number!"; false};
 if ((typeName _blacklist) != (typeName [])) exitWith {diag_log "Log: [taskPatrol] Blacklist (3) must be an Array!"; false};
 
@@ -40,14 +40,16 @@ _grp setBehaviour "SAFE";
 
 //Create a string of randomly placed waypoints.
 private ["_prevPos"];
-_prevPos = _pos;
+//_prevPos = _pos;
 for "_i" from 0 to (2 + (floor (random 3))) do
 {
-	private ["_hwp", "_newPos"];
-	_newPos = [_prevPos, 50, _maxDist, 1, 0, 60 * (pi / 180), 0, _blacklist] call BIS_fnc_findSafePos;
-	_prevPos = _newPos;
+	private ["_vwp", "_wpPos"];
+	_wpPos = [_patrolpos, 50, _maxDist, 1, 0, 60 * (pi / 180), 0, _blacklist] call BIS_fnc_findSafePos;
+	//_newPos = [_prevPos, 50, _maxDist, 1, 0, 60 * (pi / 180), 0, _blacklist] call BIS_fnc_findSafePos;
+	//_prevPos = _newPos;
+	//_prevPos = _pos;
 
-	_hwp = _grp addWaypoint [_newPos, 0];
+	_vwp = _grp addWaypoint [_wpPos, 0];
 	_hwp setWaypointType "MOVE";
 	_hwp setWaypointCompletionRadius 20;
 

@@ -81,7 +81,7 @@ Create a Unit that patrols:
 	6. Mission Type ( "M1", "M2", "M3")
 	
 Example:
-_aiunitX = [_aiunit_spawn_pos,50,4,"Bandit",_loot_pos,M1] execVM "\z\addons\dayz_server\addons\FMission\FAI\FAI_Create_Unit.sqf";
+_aiunitX = [_aiunit_spawn_pos,50,4,"Bandit",_loot_pos,"M1"] execVM "\z\addons\dayz_server\addons\FMission\FAI\FAI_Create_Unit.sqf";
 
 
 ***********************************************************************
