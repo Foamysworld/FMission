@@ -39,31 +39,31 @@ if ((typeName _blacklist) != (typeName [])) exitWith {diag_log "Log: [taskPatrol
 _grp setBehaviour "SAFE";
 
 //Create a string of randomly placed waypoints.
-private ["_prevPos"];
+private ["_prevPos", "_wpPos"];
 //_prevPos = _pos;
 for "_i" from 0 to (2 + (floor (random 3))) do
 {
-	private ["_vwp", "_wpPos"];
+	private ["_vwp"];
 	_wpPos = [_patrolpos, 50, _maxDist, 1, 0, 60 * (pi / 180), 0, _blacklist] call BIS_fnc_findSafePos;
 	//_newPos = [_prevPos, 50, _maxDist, 1, 0, 60 * (pi / 180), 0, _blacklist] call BIS_fnc_findSafePos;
 	//_prevPos = _newPos;
 	//_prevPos = _pos;
 
 	_vwp = _grp addWaypoint [_wpPos, 0];
-	_hwp setWaypointType "MOVE";
-	_hwp setWaypointCompletionRadius 20;
+	_vwp setWaypointType "MOVE";
+	_vwp setWaypointCompletionRadius 20;
 
 	//Set the group's speed and formation at the first waypoint.
 	if (_i == 0) then
 	{
-		_hwp setWaypointSpeed "LIMITED";
-		_hwp setWaypointFormation "STAG COLUMN";
+		_vwp setWaypointSpeed "LIMITED";
+		_vwp setWaypointFormation "STAG COLUMN";
 	};
 };
 
 //Cycle back to the first position.
 private ["_hwp"];
-_hwp = _grp addWaypoint [_pos, 0];
+_hwp = _grp addWaypoint [_wpPos, 0];
 _hwp setWaypointType "CYCLE";
 _hwp setWaypointCompletionRadius 20;
 
