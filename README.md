@@ -10,6 +10,8 @@ Thank you to all those who contribute to the Epoch Community.
 I credit you all in this work as I have read so many scripts and learned so much from them 
 that I can not tell you where or who I got ideas from any more. So, I credit you all.
 
+NOTE: As of Oct 17, 2014 this project is no longer being worked on. I have moved on to Arma 3.
+
 -------------------------------------------------------------------------------------------
 CODE DISCLAIMER:
 
