@@ -10,11 +10,12 @@ Parameters: [unitname]
 [unitname] execVM "\z\addons\dayz_server\addons\FMission\FLoot\FLoot_Bandit.sqf";
 */
 
-private ["_unitname","_lootChance","_diceRoll","_weaponrnd","_weapon","_magazine","_weaponslist","_magazinelist","_itemFood","_itemDrink","_itemMeds","_itemMisc","_itemslistFood","_itemslistDrink","_itemslistMeds","_itemslistMisc","_i"];
+private ["_unitname","_lootChance","_diceArray","_diceRoll","_weaponrnd","_weapon","_magazine","_weaponslist","_magazinelist","_itemFood","_itemDrink","_itemMeds","_itemMisc","_itemslistFood","_itemslistDrink","_itemslistMeds","_itemslistMisc","_i"];
 
 _unitname = _this select 0;
 _lootChance = .20;
-_diceRoll = random 1;
+_diceArray = [0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.40, 0.45, 0.50, 0.55, 0.60, 0.65, 0.70, 0.75, 0.80, 0.85, 0.90, 0.95, 1];
+_diceRoll = _diceArray select random count _diceArray;
 
 // Weapon Array
 _weaponslist = ["M4A1","M16A2","M4A3_CCO_EP1","LeeEnfield","AK_47_M"];
